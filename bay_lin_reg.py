@@ -86,12 +86,12 @@ def save_scatter(x, t, fname, samples=None, stdevs=None):
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     if len(x) > 0:
-        ax.scatter(x, t, alpha=0.4, s=10)
+        ax.scatter(x, t, alpha=0.5, s=40, c="#8fb2ff")
     ax.plot([-1, 1], [true_line(-1), true_line(1)], color="#D85A30", lw=2)
     if samples:
         weights = linbayes.posterior.rvs(samples)
         for w in weights:
-            ax.plot([-1, 1], [w[0] + w[1]*(-1), w[0] + w[1]*1], 'k', c="#aaaaaa", lw=1, alpha=0.7)
+            ax.plot([-1, 1], [w[0] + w[1]*(-1), w[0] + w[1]*1], c="#aaaaaa", lw=1, alpha=0.7)
     if stdevs:
         y_up = linbayes.prediction_limit(x_grid, stdevs)
         y_lo = linbayes.prediction_limit(x_grid, -stdevs)
