@@ -5,6 +5,18 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 import os
 
+import matplotlib as mpl
+
+mpl.rcParams.update({
+    "font.family": "serif",
+    "mathtext.fontset": "cm",  # Computer Modern (como LaTeX)
+    "axes.linewidth": 1,
+    "xtick.top": False,
+    "ytick.right": False,
+    "ytick.left": False,
+    "xtick.bottom": False,
+})
+
 OUT_DIR = "results"
 os.makedirs(OUT_DIR, exist_ok=True)
 
@@ -129,9 +141,10 @@ def save_contour(fname):
     fig, ax = plt.subplots(figsize=(5, 5), facecolor='white')
     ax.contourf(ww, vv, linbayes.posterior.pdf(pos), 20, cmap='jet')
     ax.scatter([a_0], [a_1], marker='+', c='black', s=500, linewidths=3)
-    ax.set_xlabel('$θ_0$', fontsize=24)
-    ax.set_ylabel('$θ_1$', fontsize=24)
+    ax.set_xlabel('$θ_0$', fontsize=28, labelpad=18)
+    ax.set_ylabel('$θ_1$', fontsize=28, labelpad=18)
     ax.tick_params(labelbottom=False, labelleft=False)
+    ax.tick_params(bottom=False, left=False)
     plt.tight_layout()
     plt.savefig(f"{OUT_DIR}/{fname}", dpi=150, bbox_inches='tight', facecolor='white')
     plt.close()
